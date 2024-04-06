@@ -1,0 +1,2 @@
+export const TextInputTypeList: string[] = ['text', 'email', 'date', 'time', 'datetime-local', 'password', 'color', 'file'];
+export const AllInputTypeList: string[] = ['text', 'email', 'date', 'time', 'datetime-local', 'password', 'color', 'file', 'dropdown','radio','checkbox'];

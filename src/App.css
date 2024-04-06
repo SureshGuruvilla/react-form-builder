@@ -1,38 +1,151 @@
-.App {
-  text-align: center;
-}
+:root {
+  --color-primary: #6500B0;
+  --color-primary-dark: #4B0082;
+  --color-white: #ffffff;
+  --color-light-grey: #D3D3D3;
+  --color-black: #000000;
+  --color-red: #EE4B2B;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  --field-border-radius: 5px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-base: 16px;
+  --space-m: 24px;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  --text-xs: 12px;
+  --text-s: 14px;
+  --text-base: 16px;
+
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.ml-xs{
+  margin-left: var(--space-xs);
+}
+.field{
+  position: relative;
+  margin-bottom: 25px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: var(--space-s);
+  height: fit-content;
+}
+.field.checkbox-field {
+  flex-direction: row;
+}
+.field.input-field input{
+  height: 35px;
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--field-border-radius);
+  color: var(--color-black);
+  padding: var(--space-xs) var(--space-s);
+  width: 100%;
+}
+.field.field.input-field input[type='color']{
+  width: 50px;
+}
+.layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: var(--space-s);
+}
+.layout.col{
+  flex-direction: column;
+}
+.layout > :not(button){
+  flex: 1;
+}
+button, [type='button'], [type='reset'], [type='submit']{
+  height: 30px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  padding: var(--space-xs) var(--space-s);
+  border-radius: var(--field-border-radius);
+  font-size: var(--text-base);
+}
+button:hover{
+  background-color: var(--color-primary-dark);
+  cursor: pointer;
+}
+button + button{
+  margin-left: 1rem;
+}
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+}
+.dropdown-container .dropdown-toggle {
+  position: relative;
+  padding: var(--space-xs) var(--space-s);
+  font-size: 16px;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-white);
+  cursor: pointer;
+  color: black;
+  width: 100%;
+  text-align: start;
+  height: 35px;
+  border-radius: 5px;
+}
+.dropdown-container .dropdown-toggle::after{
+  content: '';
+  border: solid var(--color-black);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-60%) rotate(45deg);
+}
+.dropdown-container[data-opened='true'] .dropdown-toggle::after{
+  transform: translateY(-40%) rotate(-135deg);
+}
+.dropdown-container[data-opened='true'] .dropdown-toggle{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.dropdown-toggle:hover{
+  background-color: var(--color-white);
 }
 
-.App-link {
-  color: #61dafb;
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-top: none;
+  border-bottom-left-radius: var(--field-border-radius);
+  border-bottom-right-radius: var(--field-border-radius);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dropdown-menu li {
+  padding: var(--space-s) var(--space-base);
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: var(--color-light-grey);
+}
+.text-red{
+  color: var(--color-red);
+}
+.error{
+  color: var(--color-red);
+  font-size: 12px;
+  position: absolute;
+  bottom: -20px;
 }
