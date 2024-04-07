@@ -1,6 +1,6 @@
 # dependencies
 /node_modules
-/dist
+/src
 
 # misc
 .env.local
@@ -8,3 +8,5 @@
 .env.test.local
 .env.production.local
 
+tsconfig.json
+tsup.config.ts

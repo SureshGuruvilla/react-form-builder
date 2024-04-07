@@ -1,7 +1,7 @@
 import React, {createContext, useState} from "react";
 import { FormDataResetType, FormDataType, FormDataUpdateType } from "./@types";
 
-interface FormContextType {
+export interface FormContextType {
     data: FormDataType;
     updateData: FormDataUpdateType;
     resetData: FormDataResetType;

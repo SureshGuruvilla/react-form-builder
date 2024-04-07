@@ -1,5 +1,9 @@
 import { FormInputValidatorType } from "../components/commons/Form/@types";
 
+export function isEmptyObject(obj: Object){
+    return obj && Object.keys(obj).length <= 0;
+}
+
 export const validateFields = (type:string, value: string, required?: boolean, validator?: FormInputValidatorType[]): [isValid:boolean, error: string] => {
     let error = "";
     let valid = true;

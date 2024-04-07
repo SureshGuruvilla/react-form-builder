@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Checkbox from "../Checkbox";
 import InputField from "../InputField";
 import RadioButton from "../RadioButton";
+import "FormView.css";
 import {
   ButtonFieldAtt,
     CheckboxFieldAttr,
@@ -19,8 +20,7 @@ import Button from "../Button";
 import { AllInputTypeList, TextInputTypeList } from "./@enums";
 import cx from "classnames";
 import Dropdown from "../Dropdown";
-import { isEmptyObject } from "../../../utils/CommonUtils";
-import { validateFields } from "../../../utils/FormUtils";
+import { isEmptyObject, validateFields } from "../../../utils/uitls";
 
 function FormView({id, className, formSpecs, method , onSubmit, ...rest }: FormProps){
   
