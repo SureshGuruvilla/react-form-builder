@@ -2,11 +2,6 @@
 /node_modules
 /src
 /example
-# misc
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-tsconfig.json
-tsup.config.ts
+**/.DS_Store
+**/.env.*
