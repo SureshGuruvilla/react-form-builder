@@ -11,7 +11,6 @@ interface InputFieldProps extends Omit<InputFieldAttr,'label' | 'type'> {
 }
 
 function InputField({ id, label, value, type = "text", required, onChange, error, style, className, ...rest }:InputFieldProps) {
-  console.log('id',id);
   
   return (
         <label 

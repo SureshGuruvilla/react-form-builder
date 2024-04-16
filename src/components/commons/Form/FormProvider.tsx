@@ -11,6 +11,7 @@ export const FormContext = createContext<FormContextType | null>(null);
 
 const FormContextProvider:React.FC<{children: React.ReactNode}> = ({children}) =>{
     const [data, setData] = useState<FormDataType>({});
+    // const data = {};
     const updateData = (data: FormDataType) => {
         setData({...data})
     }

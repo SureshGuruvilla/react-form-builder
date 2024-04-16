@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Checkbox from "../Checkbox";
 import InputField from "../InputField";
 import RadioButton from "../RadioButton";
-import "FormView.css";
+import "./FormView.css";
 import {
   ButtonFieldAtt,
     CheckboxFieldAttr,
