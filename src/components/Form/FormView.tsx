@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "../Checkbox";
-import InputField from "../InputField";
-import RadioButton from "../RadioButton";
+import Checkbox from "../Checkbox/Checkbox";
+import InputField from "../InputField/InputField";
+import RadioButton from "../RadioButton/RadioButton";
 import "./FormView.css";
 import {
   ButtonFieldAtt,
@@ -16,11 +16,11 @@ import {
     SubmitFieldAttr,
 } from "./@types";
 import { useFormContext } from "./FormContext";
-import Button from "../Button";
+import Button from "../Button/Button";
 import { AllInputTypeList, TextInputTypeList } from "./@enums";
 import cx from "classnames";
-import Dropdown from "../Dropdown";
-import { isEmptyObject, validateFields } from "../../../utils/uitls";
+import Dropdown from "../Dropdown/Dropdown";
+import { isEmptyObject, validateFields } from "../../utils";
 
 function FormView({id, className, formSpecs, method , onSubmit, ...rest }: FormProps){
   

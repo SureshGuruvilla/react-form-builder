@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import cx from "classnames";
-import InputError from './InputError';
-import { RadioButtonFieldAttr } from './Form/@types';
+import InputError from '../InputError/InputError';
+import { RadioButtonFieldAttr } from '../Form/@types';
 
 interface RadioButtonProps extends RadioButtonFieldAttr {
     id: string;

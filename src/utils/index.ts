@@ -1,4 +1,4 @@
-import { FormInputValidatorType } from "../components/commons/Form/@types";
+import { FormInputValidatorType } from "../components/Form/@types";
 
 export function isEmptyObject(obj: Object){
     return obj && Object.keys(obj).length <= 0;

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DropdownFieldAttr } from './Form/@types';
+import { DropdownFieldAttr } from '../Form/@types';
 import cx from "classnames";
-import InputError from './InputError';
+import InputError from '../InputError/InputError';
 
 interface DropdownFieldProps extends DropdownFieldAttr {
     error?: string;

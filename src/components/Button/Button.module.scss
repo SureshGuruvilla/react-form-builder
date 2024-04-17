@@ -1,0 +1,12 @@
+@import "../../sass/variables";
+button, [type='button'], [type='reset'], [type='submit']{
+    background-color: $color-primary;
+    color: $color-white;
+    border: 1px solid $color-primary;
+    padding: $space-s $space-m;
+    border-radius: $field-border-radius;
+    font-size: $text-base;
+}
+button:hover{
+    cursor: pointer;
+}

@@ -20,14 +20,31 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: /(?:stories|node_modules)/,
       },
       {
         test: /\.css$/,
         use: [
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
+          'css-loader'
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [
             // MiniCssExtractPlugin.loader,
             'style-loader',
-            'css-loader'
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]___[hash:base64:5]',
+                },
+                importLoaders: 1,
+              },
+            },
+            'sass-loader'
           ],
       },
     ],

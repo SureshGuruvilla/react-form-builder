@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
-import InputError from './InputError';
+import InputError from '../InputError/InputError';
 import cx from "classnames";
-import { CheckboxFieldAttr } from './Form/@types';
+import { CheckboxFieldAttr } from '../Form/@types';
 
 interface CheckboxProps extends CheckboxFieldAttr {
     id: string;

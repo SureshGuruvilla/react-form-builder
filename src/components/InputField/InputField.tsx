@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useState } from 'react'
-import InputError from './InputError';
+import React, { ChangeEvent } from 'react'
+import InputError from '../InputError/InputError';
 import cx from "classnames";
-import { InputFieldAttr } from './Form/@types';
+import { InputFieldAttr } from '../Form/@types';
 
 interface InputFieldProps extends Omit<InputFieldAttr,'label' | 'type'> {
     label?: string;

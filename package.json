@@ -6,7 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && webpack build",
-    "start": "webpack-dev-server --mode production --open"
+    "start": "webpack-dev-server --mode production --open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [],
   "author": "",
@@ -15,24 +17,32 @@
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
+    "@chromatic-com/storybook": "^1.3.3",
+    "@storybook/addon-essentials": "^8.0.8",
+    "@storybook/addon-interactions": "^8.0.8",
+    "@storybook/addon-links": "^8.0.8",
+    "@storybook/addon-onboarding": "^8.0.8",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
+    "@storybook/blocks": "^8.0.8",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^8.0.8",
+    "@storybook/react-webpack5": "^8.0.8",
+    "@storybook/test": "^8.0.8",
     "@types/react": "^18.2.77",
     "@types/react-dom": "^18.2.25",
+    "classnames": "^2.5.1",
     "css-loader": "^7.1.1",
     "html-webpack-plugin": "^5.6.0",
     "rimraf": "^5.0.5",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
+    "storybook": "^8.0.8",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
-    "typescript": "^5.4.5",
-    "classnames": "^2.5.1",
-    "react": "file:../library-test/node_modules/react",
-    "react-dom": "file:../library-test/node_modules/react-dom"
-
-  },
-  "peerDependencies": {
-    
+    "webpack-dev-server": "^5.0.4"
   }
 }
