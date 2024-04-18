@@ -1,58 +1,54 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: 'production',
-  entry: './src/index.tsx',
+  mode: "production",
+  entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js', // Output filename with placeholders
-    library: 'react-formez', // Specify the library name
-    libraryTarget: 'umd', // Universal Module Definition
+    path: path.resolve(__dirname, "dist"),
+    filename: "index.js", // Output filename with placeholders
+    library: "react-formez", // Specify the library name
+    libraryTarget: "umd", // Universal Module Definition
     umdNamedDefine: true,
-    globalObject: 'this',
+    globalObject: "this",
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss"],
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /(?:stories|node_modules)/,
       },
       {
-        test: /\.css$/,
-        use: [
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
-          'css-loader'
-        ],
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+        exclude: /\.module\.scss$/, // Exclude SCSS module files
       },
       {
-        test: /\.scss$/,
+        test: /\.module\.s[ca]ss$/,
         use: [
-            // MiniCssExtractPlugin.loader,
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                modules: {
-                  localIdentName: '[name]__[local]___[hash:base64:5]',
-                },
-                importLoaders: 1,
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[name]__[local]___[hash:base64:5]",
               },
+              importLoaders: 1,
             },
-            'sass-loader'
-          ],
+          },
+          "sass-loader",
+        ],
       },
     ],
   },
   plugins: [
     // new MiniCssExtractPlugin({
     //   filename: '[name].[contenthash].css',
-    //   chunkFilename: '[name].[contenthash].css', // Specify the filename template for non-entry CSS chunks  
+    //   chunkFilename: '[name].[contenthash].css', // Specify the filename template for non-entry CSS chunks
     //   }),
     // new HtmlWebpackPlugin({
     //   template: './public/index.html' // Path to your HTML template file
@@ -63,8 +59,8 @@ module.exports = {
     splitChunks: false, // Disable automatic splitting of chunks
   },
   externals: {
-    "react": "react",
-    "react-dom": "react-dom"
+    react: "react",
+    "react-dom": "react-dom",
   },
   devServer: {
     static: path.resolve(__dirname, "dist"),

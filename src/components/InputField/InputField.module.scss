@@ -1,0 +1,17 @@
+@import "/src/sass/variables";
+input {
+  height: 35px;
+  background: transparent;
+  border: 1px solid $color-primary;
+  border-radius: $field-border-radius;
+  color: $color-black;
+  padding: $space-xs $space-s;
+  width: auto;
+  max-width: 100%;
+  &[type="color"] {
+    width: 50px;
+  }
+  &[type="file"] {
+    height: auto;
+  }
+}

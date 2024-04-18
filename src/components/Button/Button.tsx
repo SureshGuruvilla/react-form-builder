@@ -7,9 +7,9 @@ import localStyles from "./Button.module.scss";
 function Button({ id, className, value, ...props }: FormButtonFieldAttr) {
   return (
     <button className={cx(id, localStyles.button, className)} {...props}>
-      <TextToHTML text={value as string}/>
+      <TextToHTML text={value as string} />
     </button>
   );
 }
 
-export default Button
+export default Button;

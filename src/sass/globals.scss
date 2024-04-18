@@ -1,0 +1,35 @@
+@import "./variables";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.field {
+  position: relative;
+  margin-bottom: $space-m;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-s;
+  height: fit-content;
+  &.row {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+button + button {
+  margin-left: $space-m;
+}
+.required {
+  color: $color-red;
+  margin-left: $space-xs;
+}
+.ml-xs {
+  margin-left: $space-xs;
+}
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}

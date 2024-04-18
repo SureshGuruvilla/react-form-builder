@@ -1,0 +1,13 @@
+@import "/src/sass/variables";
+.layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: $space-s;
+  &.col {
+    flex-direction: column;
+  }
+  > :not(button) {
+    flex: 1;
+  }
+}

@@ -1,0 +1,7 @@
+@import "/src/sass/variables";
+.error {
+  color: $color-red;
+  font-size: $text-xs;
+  position: absolute;
+  bottom: -$space-base-m;
+}

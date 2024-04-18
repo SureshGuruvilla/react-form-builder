@@ -1,0 +1,64 @@
+@import "/src/sass/variables";
+
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+  .dropdownToggle {
+    position: relative;
+    padding: $space-xs $space-s;
+    font-size: 16px;
+    border: 1px solid $color-primary;
+    background-color: $color-white;
+    cursor: pointer;
+    color: black;
+    width: 100%;
+    text-align: start;
+    height: 35px;
+    border-radius: 5px;
+    &::after {
+      content: "";
+      border: solid $color-black;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-60%) rotate(45deg);
+    }
+    &:hover {
+      background-color: $color-white;
+    }
+  }
+  &[data-opened="true"] {
+    .dropdownToggle {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .dropdownToggle::after {
+      transform: translateY(-40%) rotate(-135deg);
+    }
+    .dropdownMenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: $color-white;
+      border: 1px solid $color-primary;
+      border-top: none;
+      border-bottom-left-radius: $field-border-radius;
+      border-bottom-right-radius: $field-border-radius;
+      & li {
+        padding: $space-s $space-base;
+        cursor: pointer;
+        & :hover {
+          background-color: $color-light-grey;
+        }
+      }
+    }
+  }
+}
