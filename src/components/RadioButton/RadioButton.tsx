@@ -1,13 +1,17 @@
-import React, { ChangeEvent } from "react";
+import React, { CSSProperties, ChangeEvent } from "react";
 import cx from "classnames";
 import InputError from "../InputError/InputError";
-import { RadioButtonFieldAttr } from "../Form/@types";
 import localStyles from "./RadioButton.module.scss";
 
-interface RadioButtonProps extends Omit<RadioButtonFieldAttr, "type"> {
-  id: string;
+export interface RadioButtonProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
   options: string[];
   label?: string;
+  value?: string;
+  required?: boolean;
+  className?: string;
+  style?: CSSProperties;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }
@@ -15,11 +19,13 @@ function RadioButton({
   id,
   label,
   options,
+  value,
   onChange,
   error,
   required,
   style,
   className,
+  disabled,
   ...rest
 }: RadioButtonProps) {
   const renderRadioButtons = (options: string[]) => {
@@ -27,9 +33,11 @@ function RadioButton({
       return (
         <span key={option} className={cx(localStyles.item)}>
           <input
+            disabled={disabled}
             name={id}
             id={option}
             value={option}
+            checked={option === value}
             onChange={(e) => onChange(e)}
             type="radio"
             {...rest}
@@ -43,7 +51,7 @@ function RadioButton({
     <label
       data-label={id}
       htmlFor={id}
-      className={cx("field", id, className)}
+      className={cx("field", { disabled: disabled }, id, className)}
       style={style}
     >
       <span>

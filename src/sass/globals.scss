@@ -17,8 +17,8 @@
     align-items: center;
     flex-direction: row;
   }
-  > * {
-    opacity: 0.8;
+  &.disabled * {
+    color: $color-light-grey;
   }
 }
 button + button {

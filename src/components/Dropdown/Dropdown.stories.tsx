@@ -14,23 +14,45 @@ const meta: Meta<typeof Dropdown> = {
         disable: true,
       },
     },
+    disabled: {
+      control: "boolean",
+    },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Dropdown>;
+const renderDropdown = ({ options, ...rest }) => {
+  const [state, setState] = useState("");
+  const onSelect = (val: string) => {
+    setState(val);
+  };
+  const err = state || !rest.required ? "" : rest.error;
+
+  return (
+    <Dropdown
+      {...rest}
+      error={err}
+      onSelect={onSelect}
+      value={state}
+      options={options}
+    />
+  );
+};
 export const Sample: Story = {
-  render: ({ options, ...rest }) => {
-    const [state, setState] = useState("");
-    const onSelect = (val) => {
-      setState(val);
-    };
-    return (
-      <Dropdown {...rest} onSelect={onSelect} value={state} options={options} />
-    );
-  },
+  render: renderDropdown,
   args: {
     options: ["one", "two", "three"],
     emptyText: "Empty Text",
+    label: "Select any value",
+    required: true,
+    error: "Required Field",
+  },
+};
+export const Disabled: Story = {
+  render: renderDropdown,
+  args: {
+    options: ["one", "two", "three"],
+    disabled: true,
   },
 };

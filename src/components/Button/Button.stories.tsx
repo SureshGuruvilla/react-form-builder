@@ -10,11 +10,6 @@ const meta: Meta<typeof Button> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    id: {
-      table: {
-        disable: true,
-      },
-    },
     type: {
       options: ["button", "submit"],
       control: "select",

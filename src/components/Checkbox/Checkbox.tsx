@@ -34,8 +34,8 @@ function Checkbox({
     >
       <input
         name={id}
-        disabled
-        onChange={(e) => onChange && onChange(e)}
+        disabled={disabled}
+        onChange={(e) => onChange(e)}
         checked={checked}
         {...rest}
         type="checkbox"

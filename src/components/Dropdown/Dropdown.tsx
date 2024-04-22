@@ -2,9 +2,9 @@ import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import cx from "classnames";
 import InputError from "../InputError/InputError";
 import localStyle from "./Dropdown.module.scss";
+import Button from "../Button/Button";
 export interface DropdownProps {
-  type: "dropdown";
-  id: string;
+  id?: string;
   label?: string;
   options: string[];
   value?: string;
@@ -58,7 +58,7 @@ function Dropdown({
       ref={dropdownRef}
       data-label={id}
       htmlFor={id}
-      className={cx("field", id, className)}
+      className={cx("field", { disabled: disabled }, id, className)}
       style={style}
     >
       <span>
@@ -70,16 +70,16 @@ function Dropdown({
         {...rest}
         data-opened={isOpen}
       >
-        <button
+        <Button
           type="button"
           className={cx(localStyle.dropdownToggle)}
           disabled={disabled}
-          onClick={(e) => {
+          onClick={() => {
             setIsOpen(!isOpen);
           }}
         >
           {value || emptyText}
-        </button>
+        </Button>
         {isOpen && (
           <ul className={cx(localStyle.dropdownMenu)}>
             {value !== "" && (

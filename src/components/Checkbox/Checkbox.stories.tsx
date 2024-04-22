@@ -11,11 +11,6 @@ const meta: Meta<typeof Checkbox> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    id: {
-      table: {
-        disable: true,
-      },
-    },
     disabled: {
       control: "boolean",
     },
@@ -45,14 +40,6 @@ export const Valid: Story = {
     error: "Required Field",
     required: true,
     checked: true,
-  },
-};
-export const Invalid: Story = {
-  render: renderCheckbox,
-  args: {
-    label: "Label",
-    error: "Required Field",
-    required: true,
   },
 };
 export const Diasbled: Story = {

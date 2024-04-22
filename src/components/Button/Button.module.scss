@@ -10,7 +10,9 @@ button {
     cursor: pointer;
   }
   &:disabled {
-    opacity: 0.7;
+    background-color: $color-white;
+    border-color: currentColor;
+    color: $color-light-grey;
     cursor: not-allowed;
   }
 }
