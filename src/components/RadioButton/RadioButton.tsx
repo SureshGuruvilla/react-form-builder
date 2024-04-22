@@ -4,7 +4,7 @@ import InputError from "../InputError/InputError";
 import { RadioButtonFieldAttr } from "../Form/@types";
 import localStyles from "./RadioButton.module.scss";
 
-interface RadioButtonProps extends RadioButtonFieldAttr {
+interface RadioButtonProps extends Omit<RadioButtonFieldAttr, "type"> {
   id: string;
   options: string[];
   label?: string;
@@ -14,7 +14,7 @@ interface RadioButtonProps extends RadioButtonFieldAttr {
 function RadioButton({
   id,
   label,
-  options = [],
+  options,
   onChange,
   error,
   required,
@@ -31,6 +31,7 @@ function RadioButton({
             id={option}
             value={option}
             onChange={(e) => onChange(e)}
+            type="radio"
             {...rest}
           />
           <span className={cx("ml-xs")}>{option}</span>

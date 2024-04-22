@@ -72,7 +72,7 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
         {
           id: "clear",
           type: "button",
-          value: "Reset",
+          children: "Reset",
           onClick: () => {
             resetData();
           },
@@ -80,7 +80,7 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
         {
           id: "submit",
           type: "submit",
-          value: "Submit",
+          children: "Submit",
         },
       ],
     },
@@ -104,7 +104,7 @@ const loginFormSpecs = ({}: FormSpecProps) => {
     {
       id: "submit",
       type: "submit",
-      value: "Login",
+      children: "Login",
     },
   ];
   return formFields;

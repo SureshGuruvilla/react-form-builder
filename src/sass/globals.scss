@@ -12,9 +12,13 @@
   flex-direction: column;
   gap: $space-s;
   height: fit-content;
+  min-width: 150px;
   &.row {
     align-items: center;
     flex-direction: row;
+  }
+  > * {
+    opacity: 0.8;
   }
 }
 button + button {

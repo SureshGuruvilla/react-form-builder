@@ -1,19 +1,65 @@
-import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import Button from "./Button";
 
-export default {
-  title: "Button",
+const meta: Meta<typeof Button> = {
+  title: "components/Button",
   component: Button,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    id: {
+      table: {
+        disable: true,
+      },
+    },
+    type: {
+      options: ["button", "submit"],
+      control: "select",
+    },
+    children: {
+      control: "text",
+    },
+    className: {
+      control: "text",
+    },
+    style: {
+      control: "object",
+    },
+    onClick: {
+      if: { arg: "type", eq: "button" },
+    },
+    disabled: {
+      control: "boolean",
+    },
+  },
 };
 
-export const GenericButton = () => (
-  <Button
-    id="generic-button"
-    type="button"
-    value="GenericButton"
-    onClick={() => {}}
-  />
-);
-export const SubmitButton = () => (
-  <Button id="submit-button" type="submit" value="SubmitButton" />
-);
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Genreric: Story = {
+  args: {
+    id: "button",
+    type: "button",
+    children: "Generic",
+    onClick: action("custom"),
+  },
+};
+export const Submit: Story = {
+  args: {
+    id: "submit",
+    type: "submit",
+    children: "Submit",
+  },
+};
+export const Disabled: Story = {
+  args: {
+    id: "submit",
+    type: "submit",
+    children: "Disabled",
+    disabled: true,
+  },
+};

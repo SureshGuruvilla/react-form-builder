@@ -1,13 +1,36 @@
-import { FormButtonFieldAttr } from "../Form/@types";
 import cx from "classnames";
-import TextToHTML from "../TextToHTML/TextToHTML";
-import React from "react";
+import React, { MouseEventHandler, ReactNode } from "react";
 import localStyles from "./Button.module.scss";
 
-function Button({ id, className, value, ...props }: FormButtonFieldAttr) {
+interface CommonButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  id?: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  children: ReactNode;
+}
+interface GenericButton extends CommonButton {
+  type: "button";
+}
+interface SubmitButton extends Omit<CommonButton, ""> {
+  type: "submit";
+}
+export type ButtonProps = GenericButton | SubmitButton;
+
+function Button({
+  id,
+  type,
+  style,
+  className,
+  children,
+  ...props
+}: ButtonProps) {
   return (
-    <button className={cx(id, localStyles.button, className)} {...props}>
-      <TextToHTML text={value as string} />
+    <button
+      type={type}
+      style={style}
+      className={cx(localStyles.button, id, className)}
+      {...props}
+    >
+      {children}
     </button>
   );
 }

@@ -1,11 +1,15 @@
-import React, { ChangeEvent } from "react";
+import React, { CSSProperties, ChangeEvent } from "react";
 import InputError from "../InputError/InputError";
 import cx from "classnames";
-import { CheckboxFieldAttr } from "../Form/@types";
-interface CheckboxProps extends Omit<CheckboxFieldAttr, "type"> {
-  id: string;
+
+export interface CheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
+  label: string;
   checked: boolean;
-  label?: string;
+  required?: boolean;
+  className?: string;
+  style?: CSSProperties;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }
@@ -18,18 +22,20 @@ function Checkbox({
   error,
   className,
   style,
+  disabled,
   ...rest
 }: CheckboxProps) {
   return (
     <label
       data-label={id}
       htmlFor={id}
-      className={cx("field row", id, className)}
+      className={cx("field row", { disabled: disabled }, id, className)}
       style={style}
     >
       <input
         name={id}
-        onChange={(e) => onChange(e)}
+        disabled
+        onChange={(e) => onChange && onChange(e)}
         checked={checked}
         {...rest}
         type="checkbox"

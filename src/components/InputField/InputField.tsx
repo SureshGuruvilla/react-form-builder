@@ -4,9 +4,9 @@ import cx from "classnames";
 import { InputFieldAttr } from "../Form/@types";
 import localStyles from "./InputField.module.scss";
 
-interface InputFieldProps extends Omit<InputFieldAttr, "label" | "type"> {
-  label?: string;
-  type: string;
+interface InputFieldProps extends Omit<InputFieldAttr, "type" | "id"> {
+  type?: string;
+  id?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }

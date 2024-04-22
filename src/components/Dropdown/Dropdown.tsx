@@ -1,11 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import { DropdownFieldAttr } from "../Form/@types";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import cx from "classnames";
 import InputError from "../InputError/InputError";
 import localStyle from "./Dropdown.module.scss";
-interface DropdownFieldProps extends DropdownFieldAttr {
+export interface DropdownProps {
+  type: "dropdown";
+  id: string;
+  label?: string;
+  options: string[];
+  value?: string;
+  required?: boolean;
+  disabled?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  onSelect?: (option: string) => void;
+  emptyText?: string;
   error?: string;
-  onSelect: (value: string) => void;
 }
 function Dropdown({
   id,
@@ -20,13 +29,12 @@ function Dropdown({
   onSelect,
   emptyText = "Select an option",
   ...rest
-}: DropdownFieldProps) {
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLLabelElement>(null);
-  console.log(localStyle);
 
   const handleOnSelect = (option: string) => {
-    onSelect(option);
+    onSelect && onSelect(option);
   };
 
   useEffect(() => {
@@ -74,9 +82,11 @@ function Dropdown({
         </button>
         {isOpen && (
           <ul className={cx(localStyle.dropdownMenu)}>
-            <li key={-1} onClick={(e) => handleOnSelect("")}>
-              {emptyText}
-            </li>
+            {value !== "" && (
+              <li key={-1} onClick={(e) => handleOnSelect("")}>
+                {emptyText}
+              </li>
+            )}
             {options.map((option, index) => (
               <li key={index} onClick={() => handleOnSelect(option)}>
                 {option}

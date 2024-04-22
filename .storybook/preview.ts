@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import "../src/sass/globals.scss";
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -7,6 +8,7 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      sort: "requiredFirst",
     },
   },
 };
