@@ -34,7 +34,8 @@ function FormView({
         fields.forEach((field) => {
           if (initState[field.id]) {
             throw new Error(
-              `Duplicate form field found. Each form field need to have unique id. Duplicate field - ${field.id}`
+              `The form contains a duplicate field. Each field must have a unique ID. 
+               The duplicated field is labeled as {${field.id}}`
             );
           }
           if (AllInputTypeList.includes(field.type)) {
@@ -190,7 +191,7 @@ function FormView({
       if (type === "column" || type === "row") {
         const fields = "fields" in rest && rest.fields ? rest.fields : [];
         return (
-          <Stack {...rest} type={type} key={id}>
+          <Stack {...rest} id={id} type={type} key={id}>
             {renderFields(fields)}
           </Stack>
         );

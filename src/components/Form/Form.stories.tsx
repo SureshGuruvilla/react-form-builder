@@ -38,7 +38,7 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
           },
         },
         {
-          id: "lastName",
+          id: "firstName",
           type: "text",
           label: "Enter lastName",
         },
