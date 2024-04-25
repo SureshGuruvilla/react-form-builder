@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Checkbox from "../Checkbox/Checkbox";
-import InputField from "../InputField/InputField";
-import RadioButton from "../RadioButton/RadioButton";
-import localStyles from "./FormView.module.scss";
-import {
-  ButtonFieldAtt,
-  CheckboxFieldAttr,
-  DropdownFieldAttr,
-  FormDataType,
-  FormFieldAttrType,
-  FormInputValidatorType,
-  FormLayoutFieldAttr,
-  FormProps,
-  InputFieldAttr,
-  RadioButtonFieldAttr,
-  SubmitFieldAttr,
-} from "./@types";
 import { useFormContext } from "./FormContext";
 import Button from "../Button/Button";
 import { AllInputTypeList, TextInputTypeList } from "./@enums";
 import cx from "classnames";
 import Dropdown from "../Dropdown/Dropdown";
 import { isEmptyObject, validateFields } from "../../utils";
+import {
+  FormDataType,
+  FormField,
+  FormInputValidatorType,
+  FormProps,
+} from "./@types";
+import Stack from "../Stack/Stack";
+import InputField, { InputFieldProps } from "../InputField/InputField";
+import RadioButton from "../RadioButton/RadioButton";
 
 function FormView({
   id,
@@ -36,7 +29,7 @@ function FormView({
 
   useEffect(() => {
     if (isEmptyObject(data)) {
-      const defineState = (fields: FormFieldAttrType[]): FormDataType => {
+      const defineState = (fields: FormField[]): FormDataType => {
         let initState: FormDataType = {};
         fields.forEach((field) => {
           if (initState[field.id]) {
@@ -50,7 +43,7 @@ function FormView({
             const required: boolean =
               "required" in field && field.required ? field.required : false;
             let val: string =
-              "value" in field && field.value ? field.value : "";
+              "value" in field && field.value ? (field.value as string) : "";
             if (field.type === "checkbox") {
               val = field.checked ? field.checked.toString() : "false";
             }
@@ -68,7 +61,7 @@ function FormView({
               error: error,
             };
           }
-          if (field.type === "row-layout" || field.type === "col-layout") {
+          if (field.type === "row" || field.type === "column") {
             const innerState = defineState(field.fields);
             initState = { ...initState, ...innerState };
           }
@@ -82,7 +75,7 @@ function FormView({
     }
   }, [data]);
 
-  const renderInputField = ({ ...rest }: FormFieldAttrType) => {
+  const renderInputField = ({ ...rest }: FormField) => {
     const id = rest.id;
     const type = rest.type;
     const handleInputOnChange = (
@@ -103,7 +96,7 @@ function FormView({
       });
     };
     if (type === "checkbox") {
-      const checkBoxRest = rest as CheckboxFieldAttr;
+      const checkBoxRest = rest;
       return (
         <Checkbox
           {...checkBoxRest}
@@ -121,7 +114,7 @@ function FormView({
         />
       );
     } else if (type === "radio") {
-      const radioButtonRest = rest as RadioButtonFieldAttr;
+      const radioButtonRest = rest;
       return (
         <RadioButton
           {...radioButtonRest}
@@ -133,11 +126,11 @@ function FormView({
         />
       );
     } else if (type === "button") {
-      return <Button key={id} {...(rest as ButtonFieldAtt)} />;
+      return <Button {...rest} type={type} key={id} />;
     } else if (type === "submit") {
-      return <Button key={id} {...(rest as SubmitFieldAttr)} />;
+      return <Button {...rest} type={type} key={id} />;
     } else if (type === "dropdown") {
-      const dropDownRest = rest as DropdownFieldAttr;
+      const dropDownRest = rest;
       return (
         <Dropdown
           value={data[id].value}
@@ -151,7 +144,9 @@ function FormView({
         />
       );
     } else if (TextInputTypeList.includes(type)) {
-      const inputFieldRest = rest as InputFieldAttr;
+      const inputFieldRest = rest as InputFieldProps;
+      const validator: FormInputValidatorType[] =
+        "validator" in rest && rest.validator ? rest.validator : [];
       return (
         <InputField
           {...inputFieldRest}
@@ -163,7 +158,7 @@ function FormView({
               type,
               e.target.value,
               inputFieldRest.required,
-              inputFieldRest.validator
+              validator
             );
             inputFieldRest.onChange && inputFieldRest.onChange(e);
           }}
@@ -186,32 +181,16 @@ function FormView({
   };
 
   const renderFields = (
-    fields: FormFieldAttrType[]
+    fields: FormField[]
   ): JSX.Element | (JSX.Element | null)[] => {
-    const formFields = fields.map((field: FormFieldAttrType) => {
+    const formFields = fields.map((field: FormField) => {
       const { type, id, ...rest } = field;
-      if (type === "col-layout") {
-        const { fields, className, ...restcol } = rest as FormLayoutFieldAttr;
+      if (type === "column" || type === "row") {
+        const fields = "fields" in rest && rest.fields ? rest.fields : [];
         return (
-          <div
-            key={id}
-            {...restcol}
-            className={cx(localStyles.layout, localStyles.row, id, className)}
-          >
+          <Stack {...rest} type={type} key={id}>
             {renderFields(fields)}
-          </div>
-        );
-      }
-      if (type === "row-layout") {
-        const { fields, className, ...restrow } = rest as FormLayoutFieldAttr;
-        return (
-          <div
-            key={id}
-            {...restrow}
-            className={cx(localStyles.layout, localStyles.col, id, className)}
-          >
-            {renderFields(fields)}
-          </div>
+          </Stack>
         );
       }
       return renderInputField(field);

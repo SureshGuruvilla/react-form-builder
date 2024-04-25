@@ -39,7 +39,7 @@ const renderDropdown = ({ options, ...rest }) => {
     />
   );
 };
-export const Sample: Story = {
+export const Default: Story = {
   render: renderDropdown,
   args: {
     options: ["one", "two", "three"],

@@ -1,9 +1,10 @@
-import React, {
-  ChangeEvent,
-  CSSProperties,
-  MouseEventHandler,
-  ReactNode,
-} from "react";
+import React from "react";
+import { ButtonProps } from "../Button/Button";
+import { CheckboxProps } from "../Checkbox/Checkbox";
+import { DropdownProps } from "../Dropdown/Dropdown";
+import { InputFieldProps } from "../InputField/InputField";
+import { RadioButtonProps } from "../RadioButton/RadioButton";
+import { StackProps } from "../Stack/Stack";
 
 export interface FormSpecProps {
   data: FormDataType;
@@ -18,7 +19,7 @@ export interface FormProps
     >,
     "onSubmit"
   > {
-  formSpecs: (props: FormSpecProps) => FormFieldAttrType[];
+  formSpecs: (props: FormSpecProps) => FormField[];
   onSubmit: (isFormValid: boolean, data: FormDataType) => void;
 }
 
@@ -27,89 +28,49 @@ export interface FormInputValidatorType {
   validate: (value: string) => boolean;
 }
 
-interface CommonInputFieldAttr
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+type CommonFormFieldId = {
   id: string;
-  label?: string;
-  value?: string;
-  required?: boolean;
-  className?: string;
-  style?: CSSProperties;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+};
+type CommonFormFieldLabel = {
+  label: string;
+};
+type CommonFormFieldValidator = {
   validator?: FormInputValidatorType[];
-}
-export interface InputFieldAttr extends CommonInputFieldAttr {
-  type:
-    | "text"
-    | "email"
-    | "date"
-    | "time"
-    | "datetime-local"
-    | "password"
-    | "color"
-    | "file";
-}
-export interface RadioButtonFieldAttr extends CommonInputFieldAttr {
-  type: "radio";
-  options: string[];
-}
-export interface CheckboxFieldAttr extends Omit<CommonInputFieldAttr, "value"> {
-  type: "checkbox";
-  checked?: boolean;
-}
-export interface DropdownFieldAttr {
-  type: "dropdown";
-  id: string;
-  label?: string;
-  options: string[];
-  value?: string;
-  required?: boolean;
-  disabled?: boolean;
-  className?: string;
-  style?: CSSProperties;
-  onSelect?: (option: string) => void;
-  emptyText?: string;
-}
-interface CommonButtonFieldAttr
-  extends Omit<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    "onChange" | "label"
-  > {
-  id: string;
-  
-}
-export interface ButtonFieldAtt extends CommonButtonFieldAttr {
-  type: "button";
-}
-export interface SubmitFieldAttr
-  extends Omit<CommonButtonFieldAttr, "onClick"> {
-}
+};
+type ButtonFieldAttr = ButtonProps & CommonFormFieldId;
+type CheckboxFieldAttr = CheckboxProps &
+  CommonFormFieldId &
+  CommonFormFieldLabel &
+  CommonFormFieldValidator & {
+    type: "checkbox";
+  };
+type DropdownFieldAttr = DropdownProps &
+  CommonFormFieldId &
+  CommonFormFieldLabel & {
+    type: "dropdown";
+  };
+type InputFieldAttr = InputFieldProps &
+  CommonFormFieldId &
+  CommonFormFieldLabel &
+  CommonFormFieldValidator;
 
-interface CommonLayoutFieldAttr extends React.HTMLAttributes<HTMLDivElement> {
-  id: string;
-  fields: FormFieldAttrType[];
-}
-interface FormRowLayoutFieldAttr extends CommonLayoutFieldAttr {
-  type: "row-layout";
-}
-interface FormColLayoutFieldAttr extends CommonLayoutFieldAttr {
-  type: "col-layout";
-}
+type RadiobuttonFieldAttr = RadioButtonProps &
+  CommonFormFieldId &
+  CommonFormFieldLabel & {
+    type: "radio";
+  };
+type StackFieldAttr = Omit<StackProps, "children"> &
+  CommonFormFieldId & {
+    fields: FormField[];
+  };
 
-type FormInputFieldAttr =
-  | InputFieldAttr
-  | RadioButtonFieldAttr
+export type FormField =
+  | ButtonFieldAttr
   | CheckboxFieldAttr
-  | DropdownFieldAttr;
-export type FormButtonFieldAttr = ButtonFieldAtt | SubmitFieldAttr;
-export type FormLayoutFieldAttr =
-  | FormRowLayoutFieldAttr
-  | FormColLayoutFieldAttr;
-
-export type FormFieldAttrType =
-  | FormInputFieldAttr
-  | FormButtonFieldAttr
-  | FormLayoutFieldAttr;
+  | DropdownFieldAttr
+  | InputFieldAttr
+  | RadiobuttonFieldAttr
+  | StackFieldAttr;
 
 export interface FormDataType {
   [key: string]: {

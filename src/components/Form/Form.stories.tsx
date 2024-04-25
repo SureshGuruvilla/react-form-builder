@@ -1,16 +1,24 @@
 import React from "react";
 import Form from "./Form";
-import { FormSpecProps, FormFieldAttrType, FormDataType } from "./@types";
+import { FormSpecProps, FormField } from "./@types";
 
-export default {
-  title: "Form",
+import type { Meta, StoryObj } from "@storybook/react";
+const meta: Meta<typeof Form> = {
+  title: "Form/Form",
   component: Form,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
 };
+export default meta;
+type Story = StoryObj<typeof Form>;
+
 const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
-  const formFields: FormFieldAttrType[] = [
+  const formFields: FormField[] = [
     {
       id: "name",
-      type: "col-layout",
+      type: "row",
       fields: [
         {
           id: "firstName",
@@ -26,21 +34,61 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
           type: "text",
           label: "Enter lastName",
         },
+        {
+          type: "column",
+          id: "dt",
+          fields: [
+            {
+              id: "date",
+              type: "date",
+              label: "Select date",
+            },
+            {
+              id: "time",
+              type: "time",
+              label: "Select time",
+            },
+          ],
+        },
       ],
     },
     {
-      id: "email",
-      type: "text",
-      label: "Enter email",
+      id: "contact",
+      type: "row",
+      fields: [
+        {
+          id: "email",
+          type: "text",
+          label: "Enter email",
+        },
+        {
+          id: "phoneno",
+          type: "text",
+          label: "Enter phoneno",
+        },
+      ],
     },
     {
-      id: "phoneno",
-      type: "text",
-      label: "Enter phoneno",
+      id: "info",
+      type: "row",
+      fields: [
+        {
+          type: "radio",
+          id: "gender",
+          label: "Select your gender",
+          options: ["Male", "Female"],
+        },
+        {
+          type: "dropdown",
+          id: "occupation",
+          label: "Select your occupation",
+          options: ["Student", "Working"],
+        },
+      ],
     },
     {
       id: "pass",
-      type: "col-layout",
+      type: "row",
       fields: [
         {
           id: "password",
@@ -50,9 +98,7 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
           validator: [
             {
               message: "Password should be atlease six character length",
-              validate: function (value: string): boolean {
-                throw new Error("Function not implemented.");
-              },
+              validate: (val) => val.length < 6,
             },
           ],
         },
@@ -66,8 +112,8 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
     },
     {
       id: "cta",
-      type: "col-layout",
-      className: "justify-end",
+      type: "row",
+      className: "no-responsive",
       fields: [
         {
           id: "clear",
@@ -88,7 +134,7 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
   return formFields;
 };
 const loginFormSpecs = ({}: FormSpecProps) => {
-  const formFields: FormFieldAttrType[] = [
+  const formFields: FormField[] = [
     {
       id: "email",
       type: "text",
@@ -112,10 +158,16 @@ const loginFormSpecs = ({}: FormSpecProps) => {
 const handleSubmit = (isFormValid: boolean, data: any) => {
   console.log(isFormValid, data);
 };
-export const SignUpForm = () => (
-  <Form formSpecs={signUpFormSpecs} onSubmit={handleSubmit} />
-);
+export const SignUpForm: Story = {
+  args: {
+    formSpecs: signUpFormSpecs,
+    onSubmit: handleSubmit,
+  },
+};
 
-export const LoginForm = () => (
-  <Form formSpecs={loginFormSpecs} onSubmit={handleSubmit} />
-);
+export const LoginForm: Story = {
+  args: {
+    formSpecs: loginFormSpecs,
+    onSubmit: handleSubmit,
+  },
+};

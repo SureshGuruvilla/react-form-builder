@@ -17,8 +17,16 @@
     align-items: center;
     flex-direction: row;
   }
-  &.disabled * {
-    color: $color-light-grey;
+  &.disabled {
+    > span,
+    > div {
+      color: $color-light-grey;
+    }
+    > input {
+      color: $color-light-grey;
+      border-color: $color-light-grey;
+      background-color: $color-extra-light-grey;
+    }
   }
 }
 button + button {

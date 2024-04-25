@@ -1,0 +1,19 @@
+@import "/src/sass/variables";
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: $space-s;
+  &.row {
+    flex-direction: row;
+  }
+  &.column {
+    flex-direction: column;
+  }
+  &:not([class*="no-responsive"]) > * {
+    flex: 1;
+    @media only screen and (max-width: 480px) {
+      flex: unset;
+    }
+  }
+}

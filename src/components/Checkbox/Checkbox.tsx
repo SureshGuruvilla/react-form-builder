@@ -8,6 +8,7 @@ export interface CheckboxProps
   label: string;
   checked: boolean;
   required?: boolean;
+  disabled?: boolean;
   className?: string;
   style?: CSSProperties;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -26,9 +27,7 @@ function Checkbox({
   ...rest
 }: CheckboxProps) {
   return (
-    <label
-      data-label={id}
-      htmlFor={id}
+    <div
       className={cx("field row", { disabled: disabled }, id, className)}
       style={style}
     >
@@ -45,7 +44,7 @@ function Checkbox({
         {required && <span className={cx("required")}>*</span>}
       </span>
       {error && <InputError error={error} />}
-    </label>
+    </div>
   );
 }
 

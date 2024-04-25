@@ -66,7 +66,7 @@ const renderRadioButton = ({
   );
 };
 
-export const Sample: Story = {
+export const Default: Story = {
   render: renderRadioButton,
   args: {
     id: "option",

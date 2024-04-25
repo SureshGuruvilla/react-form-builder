@@ -31,10 +31,11 @@ function Dropdown({
   ...rest
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLLabelElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleOnSelect = (option: string) => {
     onSelect && onSelect(option);
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -54,17 +55,15 @@ function Dropdown({
   }, []);
 
   return (
-    <label
+    <div
       ref={dropdownRef}
-      data-label={id}
-      htmlFor={id}
       className={cx("field", { disabled: disabled }, id, className)}
       style={style}
     >
-      <span>
+      <label data-label={id} htmlFor={id}>
         {label}
         {required && <span className={cx("required")}>*</span>}
-      </span>
+      </label>
       <div
         className={cx(localStyle.dropdownContainer)}
         {...rest}
@@ -96,7 +95,7 @@ function Dropdown({
         )}
       </div>
       {error && <InputError error={error} />}
-    </label>
+    </div>
   );
 }
 

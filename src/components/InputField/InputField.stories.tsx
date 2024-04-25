@@ -1,5 +1,5 @@
-import React from "react";
-import InputField from "./InputField";
+import React, { useState } from "react";
+import InputField, { InputFieldProps } from "./InputField";
 import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof InputField> = {
   title: "components/InputField",
@@ -8,63 +8,37 @@ const meta: Meta<typeof InputField> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    id: {
-      table: {
-        disable: true,
-      },
-    },
-    type: {
-      options: [
-        "text",
-        "password",
-        "color",
-        "number",
-        "datetime-local",
-        "file",
-      ],
-      control: "select",
-    },
-    required: {
-      control: "boolean",
-    },
-    label: {
-      control: "text",
-    },
-  },
 };
-
+const renderInputField = ({ value, ...rest }: InputFieldProps) => {
+  const [val, setVal] = useState(value);
+  const err = val || !rest.required ? "" : rest.error;
+  return (
+    <InputField
+      {...rest}
+      error={err}
+      value={val}
+      onChange={(e) => {
+        setVal(e.target.value);
+      }}
+    />
+  );
+};
 export default meta;
 type Story = StoryObj<typeof InputField>;
-export const Text: Story = {
+export const Default: Story = {
+  render: renderInputField,
   args: {
     type: "text",
+    label: "Enter the value",
+    required: true,
+    error: "Required",
   },
 };
-export const Password: Story = {
+export const Disabled: Story = {
+  render: renderInputField,
   args: {
-    type: "password",
-  },
-};
-export const Color: Story = {
-  args: {
-    type: "color",
-  },
-};
-export const Number: Story = {
-  args: {
-    type: "number",
-  },
-};
-export const DateTime: Story = {
-  args: {
-    type: "datetime-local",
-    min: "2022-01-01T00:00",
-    max: "2022-12-31T23:59",
-  },
-};
-export const File: Story = {
-  args: {
-    type: "file",
+    type: "text",
+    label: "Enter the value",
+    disabled: true,
   },
 };

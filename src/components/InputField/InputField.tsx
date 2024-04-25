@@ -1,13 +1,28 @@
-import React, { ChangeEvent } from "react";
+import React, { CSSProperties, ChangeEvent } from "react";
 import InputError from "../InputError/InputError";
 import cx from "classnames";
-import { InputFieldAttr } from "../Form/@types";
 import localStyles from "./InputField.module.scss";
 
-interface InputFieldProps extends Omit<InputFieldAttr, "type" | "id"> {
-  type?: string;
+export interface InputFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  type:
+    | "text"
+    | "number"
+    | "email"
+    | "date"
+    | "time"
+    | "datetime-local"
+    | "password"
+    | "color"
+    | "file";
   id?: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
+  value?: string;
+  required?: boolean;
+  disabled?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }
 
@@ -17,6 +32,7 @@ function InputField({
   value,
   type = "text",
   required,
+  disabled,
   onChange,
   error,
   style,
@@ -24,27 +40,26 @@ function InputField({
   ...rest
 }: InputFieldProps) {
   return (
-    <label
-      data-label={id}
-      htmlFor={id}
-      className={cx("field", id, className)}
+    <div
+      className={cx("field", { disabled: disabled }, id, className)}
       style={style}
     >
-      <span>
+      <label data-label={id} htmlFor={id}>
         {label}
         {required && <span className={cx("required")}>*</span>}
-      </span>
+      </label>
       <input
         className={cx(localStyles.input)}
+        disabled={disabled}
         type={type}
         name={id}
         value={value}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => onChange && onChange(e)}
         data-valid={!error}
         {...rest}
       />
       {error && <InputError error={error} />}
-    </label>
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ interface CommonButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 interface GenericButton extends CommonButton {
   type: "button";
 }
-interface SubmitButton extends Omit<CommonButton, ""> {
+interface SubmitButton extends Omit<CommonButton, "onClick"> {
   type: "submit";
 }
 export type ButtonProps = GenericButton | SubmitButton;

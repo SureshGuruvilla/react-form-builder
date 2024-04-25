@@ -33,7 +33,7 @@ const renderCheckbox = ({ checked, ...rest }: CheckboxProps) => {
     <Checkbox {...rest} error={err} checked={check} onChange={handleCheck} />
   );
 };
-export const Valid: Story = {
+export const Default: Story = {
   render: renderCheckbox,
   args: {
     label: "Label",

@@ -10,9 +10,10 @@ export interface RadioButtonProps
   label?: string;
   value?: string;
   required?: boolean;
+  disabled?: boolean;
   className?: string;
   style?: CSSProperties;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }
 function RadioButton({
@@ -38,7 +39,7 @@ function RadioButton({
             id={option}
             value={option}
             checked={option === value}
-            onChange={(e) => onChange(e)}
+            onChange={(e) => onChange && onChange(e)}
             type="radio"
             {...rest}
           />
@@ -48,19 +49,17 @@ function RadioButton({
     });
   };
   return (
-    <label
-      data-label={id}
-      htmlFor={id}
+    <div
       className={cx("field", { disabled: disabled }, id, className)}
       style={style}
     >
-      <span>
+      <label data-label={id} htmlFor={id}>
         {label}
         {required && <span className={cx("required")}>*</span>}
-      </span>
+      </label>
       {renderRadioButtons(options)}
       {error && <InputError error={error} />}
-    </label>
+    </div>
   );
 }
 
