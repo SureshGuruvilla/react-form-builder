@@ -69,7 +69,6 @@ function FormView({
         return initState;
       };
       const initData = defineState(formSpecs({ data, updateData, resetData }));
-      console.log(initData);
 
       updateData(initData);
     }
@@ -95,6 +94,7 @@ function FormView({
         },
       });
     };
+
     if (type === "checkbox") {
       const checkBoxRest = rest;
       return (
@@ -118,6 +118,8 @@ function FormView({
       return (
         <RadioButton
           {...radioButtonRest}
+          key={id}
+          value={data[id].value}
           onChange={(e) => {
             handleInputOnChange(type, e.target.value, radioButtonRest.required);
             radioButtonRest.onChange && radioButtonRest.onChange(e);

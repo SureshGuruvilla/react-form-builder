@@ -10,6 +10,14 @@ const meta: Meta<typeof Form> = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    style: {
+      control: "object",
+    },
+    className: {
+      control: "text",
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Form>;
@@ -77,12 +85,14 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
           id: "gender",
           label: "Select your gender",
           options: ["Male", "Female"],
+          required: true,
         },
         {
           type: "dropdown",
           id: "occupation",
           label: "Select your occupation",
           options: ["Student", "Working"],
+          required: true,
         },
       ],
     },
@@ -109,6 +119,12 @@ const signUpFormSpecs = ({ resetData }: FormSpecProps) => {
           required: true,
         },
       ],
+    },
+    {
+      id: "terms",
+      type: "checkbox",
+      label: "Accept the terms and conditions",
+      required: true,
     },
     {
       id: "cta",
@@ -162,6 +178,9 @@ export const SignUpForm: Story = {
   args: {
     formSpecs: signUpFormSpecs,
     onSubmit: handleSubmit,
+    style: {
+      width: "400px",
+    },
   },
 };
 

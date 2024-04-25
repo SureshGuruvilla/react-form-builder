@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { ButtonProps } from "../Button/Button";
 import { CheckboxProps } from "../Checkbox/Checkbox";
 import { DropdownProps } from "../Dropdown/Dropdown";
@@ -21,6 +21,8 @@ export interface FormProps
   > {
   formSpecs: (props: FormSpecProps) => FormField[];
   onSubmit: (isFormValid: boolean, data: FormDataType) => void;
+  className: string;
+  style: CSSProperties;
 }
 
 export interface FormInputValidatorType {

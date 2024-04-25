@@ -1,7 +1,13 @@
 @import "/src/sass/variables";
 .error {
   color: $color-red;
-  font-size: $text-xs;
+  font-size: $text-s;
   position: absolute;
   bottom: -$space-base-m;
+  &.marginLarge {
+    bottom: -$space-base-m;
+  }
+  &.marginSmall {
+    bottom: -$space-s;
+  }
 }

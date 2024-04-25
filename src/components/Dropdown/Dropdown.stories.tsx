@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof Dropdown> = {
@@ -23,7 +23,11 @@ const meta: Meta<typeof Dropdown> = {
 export default meta;
 type Story = StoryObj<typeof Dropdown>;
 const renderDropdown = ({ options, ...rest }) => {
-  const [state, setState] = useState("");
+  const value = rest.value || "";
+  const [state, setState] = useState(value);
+  useEffect(() => {
+    setState(value);
+  }, [value]);
   const onSelect = (val: string) => {
     setState(val);
   };

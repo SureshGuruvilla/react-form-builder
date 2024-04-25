@@ -6,12 +6,12 @@ export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   label: string;
-  checked: boolean;
+  checked?: boolean;
   required?: boolean;
   disabled?: boolean;
   className?: string;
   style?: CSSProperties;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }
 function Checkbox({
@@ -34,7 +34,7 @@ function Checkbox({
       <input
         name={id}
         disabled={disabled}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => onChange && onChange(e)}
         checked={checked}
         {...rest}
         type="checkbox"
@@ -43,7 +43,7 @@ function Checkbox({
         {label}
         {required && <span className={cx("required")}>*</span>}
       </span>
-      {error && <InputError error={error} />}
+      {error && <InputError margin="small" error={error} />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import RadioButton, { RadioButtonProps } from "./RadioButton";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import React from "react";
 
 const meta: Meta<typeof RadioButton> = {
@@ -51,6 +51,9 @@ const renderRadioButton = ({
   ...rest
 }: RadioButtonProps) => {
   const [val, setVal] = useState(value);
+  useEffect(() => {
+    setVal(value);
+  }, [value]);
   const err = val || !rest.required ? "" : rest.error;
   return (
     <RadioButton
