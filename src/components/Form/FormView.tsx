@@ -48,7 +48,6 @@ function FormView({
             if (field.type === "checkbox") {
               val = field.checked ? field.checked.toString() : "false";
             }
-
             const [isValid, error] = validateFields(
               field.type,
               val,
@@ -69,7 +68,11 @@ function FormView({
         });
         return initState;
       };
-      const initData = defineState(formSpecs({ data, updateData, resetData }));
+      const initData = defineState(
+        typeof formSpecs === "object"
+          ? formSpecs
+          : formSpecs({ data, updateData, resetData })
+      );
 
       updateData(initData);
     }
@@ -211,7 +214,11 @@ function FormView({
     >
       <div className="flex flex-wrap">
         {!isEmptyObject(data) &&
-          renderFields(formSpecs({ data, updateData, resetData }))}
+          renderFields(
+            typeof formSpecs === "object"
+              ? formSpecs
+              : formSpecs({ data, updateData, resetData })
+          )}
       </div>
     </form>
   );

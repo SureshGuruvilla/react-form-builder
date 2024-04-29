@@ -1,7 +1,6 @@
 # dependencies
 /node_modules
 /src
-/example
 
 **/.DS_Store
-**/.env.*
+.env.

@@ -3,7 +3,6 @@
 /dist
 **/.DS_Store
 
-**/.env.*
-
+.env
 
 *storybook.log

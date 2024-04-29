@@ -5,6 +5,7 @@
   position: absolute;
   bottom: -$space-base-m;
   &.marginLarge {
+    top: 100%;
     bottom: -$space-base-m;
   }
   &.marginSmall {

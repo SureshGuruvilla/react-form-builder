@@ -19,10 +19,10 @@ export interface FormProps
     >,
     "onSubmit"
   > {
-  formSpecs: (props: FormSpecProps) => FormField[];
+  formSpecs: ((props: FormSpecProps) => FormField[]) | FormField[];
   onSubmit: (isFormValid: boolean, data: FormDataType) => void;
-  className: string;
-  style: CSSProperties;
+  className?: string;
+  style?: CSSProperties;
 }
 
 export interface FormInputValidatorType {
