@@ -1,7 +1,9 @@
 {
   "name": "react-formez",
-  "version": "1.0.10",
-  "description": "Package helps to create form with all kinds of validation in a easier way",
+  "version": "1.0.11",
+  "description": "Create forms with validation using our easy form builder.",
+  "author": "Sureshkumar M <sureshmurugadass99@gmail.com>",
+  "homepage": "https://github.com/SureshGuruvilla/react-formez",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -14,8 +16,16 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react form",
+    "form validation",
+    "form",
+    "nextjs",
+    "validation",
+    "validation",
+    "builder",
+    "form builder"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.24.4",

@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "./Form";
-import { FormSpecProps, FormField } from "./@types";
+import { FormSpecProps, FormField, FormDataType } from "./@types";
 
 import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof Form> = {
@@ -35,30 +35,11 @@ const signupFormFields: FormField[] = [
         type: "text",
         label: "Enter firstName",
         required: true,
-        onChange: () => {
-          console.log("onchnage");
-        },
       },
       {
         id: "lastname",
         type: "text",
         label: "Enter lastName",
-      },
-      {
-        type: "column",
-        id: "dt",
-        fields: [
-          {
-            id: "date",
-            type: "date",
-            label: "Select date",
-          },
-          {
-            id: "time",
-            type: "time",
-            label: "Select time",
-          },
-        ],
       },
     ],
   },
@@ -70,11 +51,29 @@ const signupFormFields: FormField[] = [
         id: "email",
         type: "text",
         label: "Enter email",
+        required: true,
+        validator: [
+          {
+            message: "Enter valid email address",
+            validate: (val) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+          },
+        ],
       },
       {
         id: "phoneno",
         type: "text",
         label: "Enter phoneno",
+        required: true,
+        validator: [
+          {
+            message: "Phone number should be 10 character length",
+            validate: (val) => val.length !== 10,
+          },
+          {
+            message: "Enter a valid phone number",
+            validate: (val) => !/^[6-9]\d{9}$/.test(val),
+          },
+        ],
       },
     ],
   },
@@ -119,6 +118,12 @@ const signupFormFields: FormField[] = [
         type: "password",
         label: "Confirm your password",
         required: true,
+        validator: [
+          {
+            message: "Password should be atlease six character length",
+            validate: (val) => val.length < 6,
+          },
+        ],
       },
     ],
   },
@@ -129,16 +134,9 @@ const signupFormFields: FormField[] = [
     required: true,
   },
   {
-    id: "cta",
-    type: "row",
-    className: "no-responsive",
-    fields: [
-      {
-        id: "submit",
-        type: "submit",
-        children: "Submit",
-      },
-    ],
+    id: "submit",
+    type: "submit",
+    children: "Submit",
   },
 ];
 const loginFormSpecs = ({}: FormSpecProps) => {
@@ -163,7 +161,7 @@ const loginFormSpecs = ({}: FormSpecProps) => {
   ];
   return formFields;
 };
-const handleSubmit = (isFormValid: boolean, data: any) => {
+const handleSubmit = (isFormValid: boolean, data: FormDataType) => {
   console.log(isFormValid, data);
 };
 export const SignUpForm: Story = {
