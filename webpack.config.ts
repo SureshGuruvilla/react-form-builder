@@ -35,7 +35,8 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: {
-                localIdentName: "[name]__[local]___[hash:base64:5]",
+                localIdentName: "[local]--[hash:base64:5]",
+                namedExport: false,
               },
               importLoaders: 1,
             },
@@ -45,15 +46,6 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    // new MiniCssExtractPlugin({
-    //   filename: '[name].[contenthash].css',
-    //   chunkFilename: '[name].[contenthash].css', // Specify the filename template for non-entry CSS chunks
-    //   }),
-    // new HtmlWebpackPlugin({
-    //   template: './public/index.html' // Path to your HTML template file
-    // })
-  ],
   optimization: {
     minimize: false,
     splitChunks: false, // Disable automatic splitting of chunks
