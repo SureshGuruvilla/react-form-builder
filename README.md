@@ -47,6 +47,7 @@ const App = () => {
         />
     );
 }
+export default App;
 ```
 
 ## Documentation
@@ -217,6 +218,7 @@ const App = () => {
         />
     );
 }
+export default App;
 ```
 
 In this example, we have utilized the `validator` attribute to implement custom validation for the email, phone number, and password fields.
@@ -305,6 +307,7 @@ const App = () => {
         />
     );
 }
+export default App;
 ```
 
 In this example, we have demonstrated how to use associated fields to validate a field like `confirmPassword`.

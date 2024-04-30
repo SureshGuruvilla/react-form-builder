@@ -46,7 +46,7 @@ function FormView({
             let val: string =
               "value" in field && field.value ? (field.value as string) : "";
             if (field.type === "checkbox") {
-              val = field.checked ? field.checked.toString() : "false";
+              val = field.value ? field.value.toString() : "false";
             }
             const [isValid, error] = validateFields(
               field.type,
@@ -114,7 +114,7 @@ function FormView({
           }}
           error={showValidationMessage ? data[id].error : ""}
           key={id}
-          checked={data[id].value === "true"}
+          value={data[id].value}
         />
       );
     } else if (type === "radio") {
