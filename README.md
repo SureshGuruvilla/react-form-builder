@@ -5,7 +5,11 @@
 ## Install
 
 ```bash
-npm install --save react-formez
+npm install react-formez
+```
+
+```bash
+yarn add react-formez
 ```
 
 ### Quick start
