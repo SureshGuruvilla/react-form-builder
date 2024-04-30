@@ -12,7 +12,7 @@ npm install react-formez
 yarn add react-formez
 ```
 
-### Quick start
+## Quick start
 
 ```bash
 import { Form, FormField, FormDataType } from "react-formez";
