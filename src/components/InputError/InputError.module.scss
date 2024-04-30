@@ -4,11 +4,11 @@
   font-size: $text-s;
   position: absolute;
   bottom: -$space-base-m;
-  &.marginLarge {
+  &[class*="marginLarge"] {
     top: 100%;
     bottom: -$space-base-m;
   }
-  &.marginSmall {
+  &[class*="marginSmall"] {
     bottom: -$space-s;
   }
 }

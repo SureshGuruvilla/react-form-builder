@@ -1,23 +1,14 @@
 import React from "react";
+import cx from "classnames";
 import localStyle from "./InputError.module.scss";
-import { cva, type VariantProps } from "class-variance-authority";
-const errorStyle = cva(localStyle.error, {
-  variants: {
-    margin: {
-      large: localStyle.marginLarge,
-      small: localStyle.marginSmall,
-    },
-  },
-  defaultVariants: {
-    margin: "large",
-  },
-});
-interface ErrorProps extends VariantProps<typeof errorStyle> {
+
+interface ErrorProps {
   error: string;
+  marginVariant?: "marginLarge" | "marginSmall";
 }
 
-function Error({ error, margin }: ErrorProps) {
-  return <div className={errorStyle({ margin })}>{error}</div>;
+function Error({ error, marginVariant }: ErrorProps) {
+  return <div className={cx(localStyle.error, marginVariant)}>{error}</div>;
 }
 
 export default Error;

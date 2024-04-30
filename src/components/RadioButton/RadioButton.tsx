@@ -58,7 +58,7 @@ function RadioButton({
         {required && <span className={cx("required")}>*</span>}
       </label>
       {renderRadioButtons(options)}
-      {error && <InputError margin="small" error={error} />}
+      {error && <InputError marginVariant="marginSmall" error={error} />}
     </div>
   );
 }

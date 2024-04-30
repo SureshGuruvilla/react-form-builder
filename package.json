@@ -1,6 +1,6 @@
 {
   "name": "react-formez",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Create forms with validation using our easy form builder.",
   "author": "Sureshkumar M <sureshmurugadass99@gmail.com>",
   "homepage": "https://github.com/SureshGuruvilla/react-formez",
@@ -57,8 +57,7 @@
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
-    "class-variance-authority": "^0.7.0"
+    "webpack-dev-server": "^5.0.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",

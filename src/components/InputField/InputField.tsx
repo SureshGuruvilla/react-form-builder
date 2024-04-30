@@ -61,7 +61,7 @@ function InputField({
       />
       {error && (
         <InputError
-          margin={type === "range" ? "small" : "large"}
+          marginVariant={type === "range" ? "marginSmall" : "marginLarge"}
           error={error}
         />
       )}

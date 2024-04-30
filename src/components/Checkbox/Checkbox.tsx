@@ -43,7 +43,7 @@ function Checkbox({
         {label}
         {required && <span className={cx("required")}>*</span>}
       </span>
-      {error && <InputError margin="small" error={error} />}
+      {error && <InputError marginVariant="marginSmall" error={error} />}
     </div>
   );
 }
