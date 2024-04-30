@@ -14,7 +14,8 @@ export interface InputFieldProps
     | "datetime-local"
     | "password"
     | "color"
-    | "file";
+    | "file"
+    | "range";
   id?: string;
   label?: string;
   value?: string;
@@ -58,7 +59,12 @@ function InputField({
         data-valid={!error}
         {...rest}
       />
-      {error && <InputError error={error} />}
+      {error && (
+        <InputError
+          margin={type === "range" ? "small" : "large"}
+          error={error}
+        />
+      )}
     </div>
   );
 }

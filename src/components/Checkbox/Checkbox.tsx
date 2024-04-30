@@ -3,10 +3,10 @@ import InputError from "../InputError/InputError";
 import cx from "classnames";
 
 export interface CheckboxProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "checked"> {
   id?: string;
   label: string;
-  checked?: boolean;
+  value?: string;
   required?: boolean;
   disabled?: boolean;
   className?: string;
@@ -16,7 +16,7 @@ export interface CheckboxProps
 }
 function Checkbox({
   id,
-  checked,
+  value,
   label,
   onChange,
   required,
@@ -35,7 +35,7 @@ function Checkbox({
         name={id}
         disabled={disabled}
         onChange={(e) => onChange && onChange(e)}
-        checked={checked}
+        checked={value === "true"}
         {...rest}
         type="checkbox"
       />
